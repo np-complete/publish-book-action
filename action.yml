@@ -1,5 +1,12 @@
 name: publish book
 description: publish book
+inputs:
+  aws-access-key-id:
+    description: aws-access-key-id
+    required: true
+  aws-secret-access-key:
+    description: aws-secret-access-key
+    required: true
 runs:
   using: composite
   steps:
@@ -8,8 +15,8 @@ runs:
         config: config.ebook.yml
     - uses: aws-actions/configure-aws-credentials@v2
       with:
-        aws-access-key-id: ${{ secrets.BOOK_DEPLOY_ACCESS_KEY }}
-        aws-secret-access-key: ${{ secrets.BOOK_DEPLOY_SECRET_KEY }}
+        aws-access-key-id: ${{ inputs.aws-access-key-id }}
+        aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
         aws-region: us-west-2
     - run: echo "REPO_NAME=`echo ${{ github.repository }} | cut -d '/' -f 2`" >> $GITHUB_ENV
       shell: bash
