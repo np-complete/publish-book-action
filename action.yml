@@ -6,7 +6,7 @@ runs:
     - uses: np-complete/build-book-action@v1
       with:
         config: config.ebook.yml
-    - uses: aws-actions/configure-aws-credentials@v2
+    - uses: aws-actions/configure-aws-credentials@v4
       with:
         role-to-assume: arn:aws:iam::009775665146:role/publish-np-complete-book-role
         aws-region: us-west-2
