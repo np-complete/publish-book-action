@@ -1,11 +1,16 @@
 name: publish book
 description: publish book
+inputs:
+  config:
+    description: config file
+    required: false
+    default: config.ebook.yml
 runs:
   using: composite
   steps:
     - uses: np-complete/build-book-action@v1
       with:
-        config: config.ebook.yml
+        config: ${{ inputs.config }}
     - uses: aws-actions/configure-aws-credentials@v4
       with:
         role-to-assume: arn:aws:iam::009775665146:role/publish-np-complete-book-role
