@@ -17,5 +17,5 @@ runs:
         aws-region: us-west-2
     - run: echo "REPO_NAME=`echo ${{ github.repository }} | cut -d '/' -f 2`" >> $GITHUB_ENV
       shell: bash
-    - run: aws s3 cp book.pdf s3://np-complete-books/pdf/${{ env.REPO_NAME }}.pdf --acl public-read
+    - run: aws s3 cp book.pdf s3://np-complete-books/pdf/${{ env.REPO_NAME }}.pdf --acl public-read --cache-control "max-age=900"
       shell: bash
